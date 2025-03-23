@@ -8,8 +8,9 @@
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" type="text/css" href="../styles/main.css" />
-    <link rel="stylesheet" type="text/css" href="../styles/social.css" />
+    <link rel="stylesheet" type="text/css" href="/styles/main.css" />
+    <link rel="stylesheet" type="text/css" href="/styles/social.css" />
+    <link rel="stylesheet" href="/styles/post-list.css" />
   </head>
   <body>
     <div class="cyber-background"></div>
@@ -94,7 +95,7 @@
             </ul>
           </div>
 
-          <div class="sidebar-card">
+          <div class="sidebar-card" hidden>
             <h3 class="sidebar-heading">Your Topics</h3>
             <ul class="menu-list">
               <li class="menu-item">
@@ -137,169 +138,10 @@
           <div class="content-view" id="messages"></div>
 
           <!-- Notifications View -->
-          <div class="content-view" id="notifications">
-            <h2 style="margin-bottom: 20px; color: var(--primary-neon)">
-              Notifications
-            </h2>
-
-            <div class="notification-item unread">
-              <img
-                src="https://picsum.photos/200/200?random=13"
-                alt="User"
-                class="notification-avatar"
-              />
-              <div class="notification-content">
-                <div class="notification-text">
-                  <b>Cyber Witch</b> mentioned you in a comment: "Hey
-                  <b>@You</b>, what do you think about this neural mod?"
-                </div>
-                <div class="notification-time">10 minutes ago</div>
-              </div>
-              <div class="notification-action">
-                <i class="bx bx-dots-horizontal-rounded"></i>
-              </div>
-            </div>
-
-            <div class="notification-item unread">
-              <img
-                src="https://picsum.photos/200/200?random=14"
-                alt="User"
-                class="notification-avatar"
-              />
-              <div class="notification-content">
-                <div class="notification-text">
-                  <b>NeoRunner</b> liked your post: "Just upgraded my neural
-                  interface..."
-                </div>
-                <div class="notification-time">1 hour ago</div>
-              </div>
-              <div class="notification-action">
-                <i class="bx bx-dots-horizontal-rounded"></i>
-              </div>
-            </div>
-
-            <div class="notification-item unread">
-              <img
-                src="https://picsum.photos/200/200?random=15"
-                alt="User"
-                class="notification-avatar"
-              />
-              <div class="notification-content">
-                <div class="notification-text">
-                  <b>TechNomad</b> started following you
-                </div>
-                <div class="notification-time">2 hours ago</div>
-              </div>
-              <div class="notification-action">
-                <button class="follow-btn">Follow</button>
-              </div>
-            </div>
-
-            <div class="notification-item">
-              <img
-                src="https://picsum.photos/200/200?random=16"
-                alt="User"
-                class="notification-avatar"
-              />
-              <div class="notification-content">
-                <div class="notification-text">
-                  <b>DigitalArtist</b> shared your post: "Check out this
-                  cyberpunk artwork..."
-                </div>
-                <div class="notification-time">Yesterday</div>
-              </div>
-              <div class="notification-action">
-                <i class="bx bx-dots-horizontal-rounded"></i>
-              </div>
-            </div>
-
-            <div class="notification-item">
-              <img
-                src="https://picsum.photos/200/200?random=17"
-                alt="User"
-                class="notification-avatar"
-              />
-              <div class="notification-content">
-                <div class="notification-text">
-                  Your post reached <b>100 likes</b>!
-                </div>
-                <div class="notification-time">2 days ago</div>
-              </div>
-              <div class="notification-action">
-                <i class="bx bx-dots-horizontal-rounded"></i>
-              </div>
-            </div>
-          </div>
+          <div class="content-view" id="notifications"></div>
 
           <!-- Bookmarks View -->
-          <div class="content-view" id="bookmarks">
-            <h2 style="margin-bottom: 20px; color: var(--primary-neon)">
-              Bookmarks
-            </h2>
-
-            <div class="bookmark-controls">
-              <div class="bookmark-tabs">
-                <div class="bookmark-tab active">All</div>
-                <div class="bookmark-tab">Posts</div>
-                <div class="bookmark-tab">Articles</div>
-                <div class="bookmark-tab">Media</div>
-              </div>
-
-              <div class="bookmark-search">
-                <i class="bx bx-search"></i>
-                <input type="text" placeholder="Search bookmarks" />
-              </div>
-            </div>
-
-            <div class="post">
-              <div class="post-header">
-                <img
-                  src="https://picsum.photos/200/200?random=18"
-                  alt="User"
-                  class="post-avatar"
-                />
-                <div class="post-user-info">
-                  <div class="post-username">Neural_Network</div>
-                  <div class="post-time">Bookmarked 3 days ago</div>
-                </div>
-                <div class="post-more">
-                  <i class="bx bx-dots-horizontal-rounded"></i>
-                </div>
-              </div>
-              <div class="post-content">
-                Tutorial: How to optimize your neural interface for maximum
-                bandwidth without overheating. A deep dive into cooling systems
-                and data compression. #Tutorial #CyberTech
-              </div>
-              <img
-                src="https://picsum.photos/800/400?random=5"
-                alt="Post Image"
-                class="post-image"
-              />
-            </div>
-
-            <div class="post">
-              <div class="post-header">
-                <img
-                  src="https://picsum.photos/200/200?random=19"
-                  alt="User"
-                  class="post-avatar"
-                />
-                <div class="post-user-info">
-                  <div class="post-username">CyberCode</div>
-                  <div class="post-time">Bookmarked 1 week ago</div>
-                </div>
-                <div class="post-more">
-                  <i class="bx bx-dots-horizontal-rounded"></i>
-                </div>
-              </div>
-              <div class="post-content">
-                Breaking: New legislation on cybernetic augmentations just
-                passed. Here's what you need to know about the regulations and
-                how they affect your implants. #CyberLaw #Augmentation
-              </div>
-            </div>
-          </div>
+          <div class="content-view" id="bookmarks"></div>
 
           <!-- Profile View -->
           <div class="content-view" id="profile"></div>

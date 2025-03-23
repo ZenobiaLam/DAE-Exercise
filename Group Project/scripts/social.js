@@ -18,6 +18,8 @@ document.addEventListener("click", function (e) {
         });
     }
   });
+
+  showView('feed')
   
   async function showView(viewId) {
   

@@ -1,64 +1,84 @@
-<style>
-  /* Notifications View */
-  .notification-item {
-    display: flex;
-    gap: 15px;
-    padding: 15px;
-    border-bottom: 1px solid rgba(15, 255, 255, 0.1);
-    transition: all 0.3s ease;
-    background: var(--bg-card);
-    margin-bottom: 10px;
-    border-radius: 15px;
-  }
+<h2 style="margin-bottom: 20px; color: var(--primary-neon)">Notifications</h2>
 
-  .notification-item:hover {
-    background: rgba(15, 255, 255, 0.05);
-  }
-
-  .notification-item.unread {
-    background: rgba(15, 255, 255, 0.05);
-  }
-
-  .notification-avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: 1px solid var(--primary-neon);
-  }
-
-  .notification-content {
-    flex: 1;
-  }
-
-  .notification-text {
-    margin-bottom: 5px;
-    line-height: 1.4;
-  }
-
-  .notification-text b {
-    font-weight: bold;
-    color: var(--primary-neon);
-  }
-
-  .notification-time {
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-  }
-
-  .notification-action {
-    align-self: center;
-  }
-</style>
-
-
-<i class="bx bx-bell"></i>
-<span class="notification-badge">3</span>
+<div class="notification-item unread">
+  <img
+    src="https://picsum.photos/200/200?random=13"
+    alt="User"
+    class="notification-avatar"
+  />
+  <div class="notification-content">
+    <div class="notification-text">
+      <b>Cyber Witch</b> mentioned you in a comment: "Hey <b>@You</b>, what do
+      you think about this neural mod?"
+    </div>
+    <div class="notification-time">10 minutes ago</div>
+  </div>
+  <div class="notification-action">
+    <i class="bx bx-dots-horizontal-rounded"></i>
+  </div>
 </div>
-<div class="profile-dropdown" data-view="profile">
-<img
-  src="https://picsum.photos/200/200?random=1"
-  alt="Profile"
-  class="profile-avatar"
-/>
+
+<div class="notification-item unread">
+  <img
+    src="https://picsum.photos/200/200?random=14"
+    alt="User"
+    class="notification-avatar"
+  />
+  <div class="notification-content">
+    <div class="notification-text">
+      <b>NeoRunner</b> liked your post: "Just upgraded my neural interface..."
+    </div>
+    <div class="notification-time">1 hour ago</div>
+  </div>
+  <div class="notification-action">
+    <i class="bx bx-dots-horizontal-rounded"></i>
+  </div>
 </div>
+
+<div class="notification-item unread">
+  <img
+    src="https://picsum.photos/200/200?random=15"
+    alt="User"
+    class="notification-avatar"
+  />
+  <div class="notification-content">
+    <div class="notification-text"><b>TechNomad</b> started following you</div>
+    <div class="notification-time">2 hours ago</div>
+  </div>
+  <div class="notification-action">
+    <button class="follow-btn">Follow</button>
+  </div>
+</div>
+
+<div class="notification-item">
+  <img
+    src="https://picsum.photos/200/200?random=16"
+    alt="User"
+    class="notification-avatar"
+  />
+  <div class="notification-content">
+    <div class="notification-text">
+      <b>DigitalArtist</b> shared your post: "Check out this cyberpunk
+      artwork..."
+    </div>
+    <div class="notification-time">Yesterday</div>
+  </div>
+  <div class="notification-action">
+    <i class="bx bx-dots-horizontal-rounded"></i>
+  </div>
+</div>
+
+<div class="notification-item">
+  <img
+    src="https://picsum.photos/200/200?random=17"
+    alt="User"
+    class="notification-avatar"
+  />
+  <div class="notification-content">
+    <div class="notification-text">Your post reached <b>100 likes</b>!</div>
+    <div class="notification-time">2 days ago</div>
+  </div>
+  <div class="notification-action">
+    <i class="bx bx-dots-horizontal-rounded"></i>
+  </div>
 </div>
