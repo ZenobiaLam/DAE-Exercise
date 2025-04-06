@@ -347,13 +347,26 @@
 
 <script>
   // Messages interaction
-  document.addEventListener("click", function (e) {
-    const messagePreview = e.target.closest(".message-preview");
-    if (messagePreview) {
-      document.querySelectorAll(".message-preview").forEach((preview) => {
-        preview.classList.remove("active");
-      });
-      messagePreview.classList.add("active");
-    }
+  const messagePreviews = document.querySelectorAll(".message-preview");
+  const messageContent = document.querySelector(".messages-chat-body");
+
+  messagePreviews.forEach((preview) => {
+    preview.addEventListener("click", function () {
+      // Remove active class from all previews
+      messagePreviews.forEach((p) => p.classList.remove("active"));
+      // Add active class to the clicked preview
+      this.classList.add("active");
+
+      // Update the main chat content
+      const chatContent = this.querySelector(
+        ".message-preview-content"
+      ).innerHTML;
+      messageContent.innerHTML = `
+      <div class="message-bubble received">
+        ${chatContent}
+        <div class="message-time">10:30 AM</div>
+      </div>
+    `;
+    });
   });
 </script>

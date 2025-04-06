@@ -1,3 +1,106 @@
+<link rel="stylesheet" href="/styles/post-list.css" />
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Arial", sans-serif;
+  }
+
+  :root {
+    --primary-neon: #0ff;
+    --secondary-neon: #f0f;
+    --bg-dark: #0a0a0f;
+    --bg-card: rgba(16, 16, 26, 0.8);
+    --text-primary: #fff;
+    --text-secondary: #8a8a8a;
+    --accent-1: #ff3e3e;
+    --accent-2: #4dff4d;
+    --accent-3: #f7b500;
+  }
+
+  /* Cyberpunk Background Effect */
+  .cyber-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(45deg, #0a0a0f 25%, transparent 25%),
+      linear-gradient(-45deg, #0a0a0f 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #0a0a0f 75%),
+      linear-gradient(-45deg, transparent 75%, #0a0a0f 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  }
+
+  .cyber-grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(
+        rgba(15, 255, 255, 0.1) 1px,
+        transparent 1px
+      ),
+      linear-gradient(90deg, rgba(15, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    z-index: -1;
+  }
+
+  /* Notifications View */
+  .notification-item {
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+    border-bottom: 1px solid rgba(15, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    background: var(--bg-card);
+    margin-bottom: 10px;
+    border-radius: 15px;
+  }
+
+  .notification-item:hover {
+    background: rgba(15, 255, 255, 0.05);
+  }
+
+  .notification-item.unread {
+    background: rgba(15, 255, 255, 0.05);
+  }
+
+  .notification-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid var(--primary-neon);
+  }
+
+  .notification-content {
+    flex: 1;
+  }
+
+  .notification-text {
+    margin-bottom: 5px;
+    line-height: 1.4;
+  }
+
+  .notification-text b {
+    font-weight: bold;
+    color: var(--primary-neon);
+  }
+
+  .notification-time {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+  }
+
+  .notification-action {
+    align-self: center;
+  }
+</style>
+
 <h2 style="margin-bottom: 20px; color: var(--primary-neon)">Notifications</h2>
 
 <div class="notification-item unread">
