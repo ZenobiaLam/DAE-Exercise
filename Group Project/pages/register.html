@@ -1,815 +1,955 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dragonote | Registration</title>
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segment', sans-serif;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segment", sans-serif;
+      }
 
-        :root {
-            --primary-neon: #0ff;
-            --secondary-neon: #f0f;
-            --bg-dark: #0a0a0f;
-            --bg-card: rgba(16, 16, 26, 0.8);
-            --text-primary: #fff;
-            --text-secondary: #8a8a8a;
-            --accent-1: #ff3e3e;
-            --accent-2: #4dff4d;
-        }
+      :root {
+        --primary-neon: #0ff;
+        --secondary-neon: #f0f;
+        --bg-dark: #0a0a0f;
+        --bg-card: rgba(16, 16, 26, 0.8);
+        --text-primary: #fff;
+        --text-secondary: #8a8a8a;
+        --accent-1: #ff3e3e;
+        --accent-2: #4dff4d;
+      }
 
-        body {
-            background: var(--bg-dark);
-            color: var(--text-primary);
-            min-height: 100vh;
-            overflow-x: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+      body {
+        background: var(--bg-dark);
+        color: var(--text-primary);
+        min-height: 100vh;
+        overflow-x: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-        /* Cyberpunk Background Effect */
-        .cyber-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: 
-                linear-gradient(45deg, #0a0a0f 25%, transparent 25%),
-                linear-gradient(-45deg, #0a0a0f 25%, transparent 25%),
-                linear-gradient(45deg, transparent 75%, #0a0a0f 75%),
-                linear-gradient(-45deg, transparent 75%, #0a0a0f 75%);
-            background-size: 20px 20px;
-            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-        }
+      /* Cyberpunk Background Effect */
+      .cyber-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: linear-gradient(45deg, #0a0a0f 25%, transparent 25%),
+          linear-gradient(-45deg, #0a0a0f 25%, transparent 25%),
+          linear-gradient(45deg, transparent 75%, #0a0a0f 75%),
+          linear-gradient(-45deg, transparent 75%, #0a0a0f 75%);
+        background-size: 20px 20px;
+        background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+      }
 
-        .cyber-grid {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(15, 255, 255, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(15, 255, 255, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: -1;
-        }
+      .cyber-grid {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(
+            rgba(15, 255, 255, 0.1) 1px,
+            transparent 1px
+          ),
+          linear-gradient(90deg, rgba(15, 255, 255, 0.1) 1px, transparent 1px);
+        background-size: 50px 50px;
+        z-index: -1;
+      }
 
-        /* Registration Form */
+      /* Registration Form */
+      .auth-container {
+        width: 100%;
+        max-width: 500px;
+        padding: 20px;
+      }
+
+      .auth-card {
+        background: var(--bg-card);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        border: 1px solid rgba(15, 255, 255, 0.1);
+        padding: 30px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .auth-card::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          to bottom right,
+          rgba(15, 255, 255, 0.1),
+          transparent,
+          rgba(240, 0, 255, 0.1)
+        );
+        transform: rotate(30deg);
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      .auth-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .auth-header h1 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
+
+      .auth-header p {
+        color: var(--text-secondary);
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      .logo i {
+        font-size: 2.5rem;
+        color: var(--primary-neon);
+      }
+
+      .logo span {
+        font-size: 2rem;
+        font-weight: bold;
+        color: var(--text-primary);
+        letter-spacing: 2px;
+      }
+
+      /* Form Elements */
+      .form-group {
+        margin-bottom: 20px;
+        position: relative;
+      }
+
+      .form-label {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
+
+      .form-control {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(15, 255, 255, 0.1);
+        border-radius: 8px;
+        padding: 12px 15px;
+        color: var(--text-primary);
+        transition: all 0.3s ease;
+      }
+
+      .form-control:focus {
+        outline: none;
+        border-color: var(--primary-neon);
+        box-shadow: 0 0 10px rgba(15, 255, 255, 0.2);
+      }
+
+      .form-icon {
+        position: absolute;
+        right: 15px;
+        top: 38px;
+        color: var(--text-secondary);
+      }
+
+      /* Avatar Selection */
+      .avatar-selection {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 20px;
+        justify-content: center;
+      }
+
+      .avatar-option {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: 2px solid transparent;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        overflow: hidden;
+      }
+
+      .avatar-option:hover {
+        transform: scale(1.1);
+      }
+
+      .avatar-option.selected {
+        border-color: var(--primary-neon);
+        box-shadow: 0 0 15px var(--primary-neon);
+      }
+
+      .avatar-option img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* Button Styles */
+      .btn {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-primary {
+        background: linear-gradient(
+          45deg,
+          var(--primary-neon),
+          var(--secondary-neon)
+        );
+        color: var(--bg-dark);
+      }
+
+      .btn-primary:hover {
+        opacity: 0.9;
+        transform: translateY(-2px);
+      }
+
+      .btn-outline {
+        background: transparent;
+        border: 1px solid var(--primary-neon);
+        color: var(--primary-neon);
+      }
+
+      .btn-outline:hover {
+        background: rgba(15, 255, 255, 0.1);
+      }
+
+      /* Button Glow Effect */
+      .btn::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          to bottom right,
+          rgba(255, 255, 255, 0.2),
+          transparent,
+          rgba(255, 255, 255, 0.2)
+        );
+        transform: rotate(30deg);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .btn:hover::after {
+        opacity: 1;
+      }
+
+      /* Divider */
+      .divider {
+        display: flex;
+        align-items: center;
+        margin: 25px 0;
+        color: var(--text-secondary);
+      }
+
+      .divider::before,
+      .divider::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: rgba(15, 255, 255, 0.1);
+      }
+
+      .divider span {
+        padding: 0 15px;
+      }
+
+      /* Social Login */
+      .social-login {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 25px;
+      }
+
+      .social-btn {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(15, 255, 255, 0.1);
+        color: var(--text-primary);
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .social-btn:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      /* Form Footer */
+      .form-footer {
+        text-align: center;
+        margin-top: 25px;
+        color: var(--text-secondary);
+      }
+
+      .form-footer a {
+        color: var(--primary-neon);
+        text-decoration: none;
+      }
+
+      .form-footer a:hover {
+        text-decoration: underline;
+      }
+
+      /* Progress Bar */
+      .progress-container {
+        width: 100%;
+        height: 5px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        margin-bottom: 30px;
+      }
+
+      .progress-bar {
+        height: 100%;
+        border-radius: 10px;
+        background: linear-gradient(
+          to right,
+          var(--primary-neon),
+          var(--secondary-neon)
+        );
+        width: 33.33%;
+        transition: width 0.3s ease;
+      }
+
+      /* Step Navigation */
+      .step-nav {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+
+      /* Multi-step Form */
+      .form-step {
+        display: none;
+      }
+
+      .form-step.active {
+        display: block;
+        animation: fadeIn 0.5s forwards;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Password Strength */
+      .password-strength {
+        margin-top: 10px;
+        height: 5px;
+        border-radius: 5px;
+        background: var(--accent-1);
+        transition: all 0.3s ease;
+      }
+
+      .password-strength.medium {
+        background: #ffc107;
+        width: 66%;
+      }
+
+      .password-strength.strong {
+        background: var(--accent-2);
+        width: 100%;
+      }
+
+      .strength-text {
+        font-size: 0.8rem;
+        color: var(--accent-1);
+        margin-top: 5px;
+      }
+
+      .strength-text.medium {
+        color: #ffc107;
+      }
+
+      .strength-text.strong {
+        color: var(--accent-2);
+      }
+
+      /* Checkbox */
+      .form-check {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      .form-check-input {
+        width: 18px;
+        height: 18px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(15, 255, 255, 0.1);
+        border-radius: 4px;
+        cursor: pointer;
+        position: relative;
+        appearance: none;
+        -webkit-appearance: none;
+      }
+
+      .form-check-input:checked {
+        background: var(--primary-neon);
+      }
+
+      .form-check-input:checked::after {
+        content: "✓";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: var(--bg-dark);
+        font-size: 12px;
+      }
+
+      .form-check-label {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
+
+      /* Animations */
+      @keyframes neonPulse {
+        0%,
+        100% {
+          text-shadow: 0 0 5px var(--primary-neon), 0 0 10px var(--primary-neon);
+        }
+        50% {
+          text-shadow: 0 0 15px var(--primary-neon),
+            0 0 20px var(--primary-neon);
+        }
+      }
+
+      .neon-text {
+        color: var(--primary-neon);
+        animation: neonPulse 2s infinite;
+      }
+
+      /* Success Message */
+      .success-message {
+        text-align: center;
+        display: none;
+      }
+
+      .success-icon {
+        font-size: 5rem;
+        color: var(--accent-2);
+        margin-bottom: 20px;
+      }
+
+      /* Responsive */
+      @media (max-width: 576px) {
         .auth-container {
-            width: 100%;
-            max-width: 500px;
-            padding: 20px;
+          padding: 10px;
         }
 
         .auth-card {
-            background: var(--bg-card);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            border: 1px solid rgba(15, 255, 255, 0.1);
-            padding: 30px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .auth-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                to bottom right,
-                rgba(15, 255, 255, 0.1),
-                transparent,
-                rgba(240, 0, 255, 0.1)
-            );
-            transform: rotate(30deg);
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .auth-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .auth-header h1 {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
-        .auth-header p {
-            color: var(--text-secondary);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .logo i {
-            font-size: 2.5rem;
-            color: var(--primary-neon);
+          padding: 20px;
         }
 
         .logo span {
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--text-primary);
-            letter-spacing: 2px;
-        }
-
-        /* Form Elements */
-        .form-group {
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .form-control {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(15, 255, 255, 0.1);
-            border-radius: 8px;
-            padding: 12px 15px;
-            color: var(--text-primary);
-            transition: all 0.3s ease;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary-neon);
-            box-shadow: 0 0 10px rgba(15, 255, 255, 0.2);
-        }
-
-        .form-icon {
-            position: absolute;
-            right: 15px;
-            top: 38px;
-            color: var(--text-secondary);
-        }
-
-        /* Avatar Selection */
-        .avatar-selection {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 20px;
-            justify-content: center;
+          font-size: 1.5rem;
         }
 
         .avatar-option {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            border: 2px solid transparent;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            overflow: hidden;
+          width: 50px;
+          height: 50px;
         }
-
-        .avatar-option:hover {
-            transform: scale(1.1);
-        }
-
-        .avatar-option.selected {
-            border-color: var(--primary-neon);
-            box-shadow: 0 0 15px var(--primary-neon);
-        }
-
-        .avatar-option img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Button Styles */
-        .btn {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary {
-            background: linear-gradient(45deg, var(--primary-neon), var(--secondary-neon));
-            color: var(--bg-dark);
-        }
-
-        .btn-primary:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 1px solid var(--primary-neon);
-            color: var(--primary-neon);
-        }
-
-        .btn-outline:hover {
-            background: rgba(15, 255, 255, 0.1);
-        }
-
-        /* Button Glow Effect */
-        .btn::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                to bottom right,
-                rgba(255, 255, 255, 0.2),
-                transparent,
-                rgba(255, 255, 255, 0.2)
-            );
-            transform: rotate(30deg);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .btn:hover::after {
-            opacity: 1;
-        }
-
-        /* Divider */
-        .divider {
-            display: flex;
-            align-items: center;
-            margin: 25px 0;
-            color: var(--text-secondary);
-        }
-
-        .divider::before,
-        .divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: rgba(15, 255, 255, 0.1);
-        }
-
-        .divider span {
-            padding: 0 15px;
-        }
-
-        /* Social Login */
-        .social-login {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        .social-btn {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 10px;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(15, 255, 255, 0.1);
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .social-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        /* Form Footer */
-        .form-footer {
-            text-align: center;
-            margin-top: 25px;
-            color: var(--text-secondary);
-        }
-
-        .form-footer a {
-            color: var(--primary-neon);
-            text-decoration: none;
-        }
-
-        .form-footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Progress Bar */
-        .progress-container {
-            width: 100%;
-            height: 5px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            margin-bottom: 30px;
-        }
-
-        .progress-bar {
-            height: 100%;
-            border-radius: 10px;
-            background: linear-gradient(to right, var(--primary-neon), var(--secondary-neon));
-            width: 33.33%;
-            transition: width 0.3s ease;
-        }
-
-        /* Step Navigation */
-        .step-nav {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-
-        /* Multi-step Form */
-        .form-step {
-            display: none;
-        }
-
-        .form-step.active {
-            display: block;
-            animation: fadeIn 0.5s forwards;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Password Strength */
-        .password-strength {
-            margin-top: 10px;
-            height: 5px;
-            border-radius: 5px;
-            background: var(--accent-1);
-            transition: all 0.3s ease;
-        }
-
-        .password-strength.medium {
-            background: #ffc107;
-            width: 66%;
-        }
-
-        .password-strength.strong {
-            background: var(--accent-2);
-            width: 100%;
-        }
-
-        .strength-text {
-            font-size: 0.8rem;
-            color: var(--accent-1);
-            margin-top: 5px;
-        }
-
-        .strength-text.medium {
-            color: #ffc107;
-        }
-
-        .strength-text.strong {
-            color: var(--accent-2);
-        }
-
-        /* Checkbox */
-        .form-check {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .form-check-input {
-            width: 18px;
-            height: 18px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(15, 255, 255, 0.1);
-            border-radius: 4px;
-            cursor: pointer;
-            position: relative;
-            appearance: none;
-            -webkit-appearance: none;
-        }
-
-        .form-check-input:checked {
-            background: var(--primary-neon);
-        }
-
-        .form-check-input:checked::after {
-            content: '✓';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: var(--bg-dark);
-            font-size: 12px;
-        }
-
-        .form-check-label {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        /* Animations */
-        @keyframes neonPulse {
-            0%, 100% { text-shadow: 0 0 5px var(--primary-neon), 0 0 10px var(--primary-neon); }
-            50% { text-shadow: 0 0 15px var(--primary-neon), 0 0 20px var(--primary-neon); }
-        }
-
-        .neon-text {
-            color: var(--primary-neon);
-            animation: neonPulse 2s infinite;
-        }
-
-        /* Success Message */
-        .success-message {
-            text-align: center;
-            display: none;
-        }
-
-        .success-icon {
-            font-size: 5rem;
-            color: var(--accent-2);
-            margin-bottom: 20px;
-        }
-
-        /* Responsive */
-        @media (max-width: 576px) {
-            .auth-container {
-                padding: 10px;
-            }
-
-            .auth-card {
-                padding: 20px;
-            }
-
-            .logo span {
-                font-size: 1.5rem;
-            }
-
-            .avatar-option {
-                width: 50px;
-                height: 50px;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="cyber-background"></div>
     <div class="cyber-grid"></div>
 
     <div class="auth-container">
-        <div class="auth-card">
-            <div class="logo">
-                <i class='bx bxs-dragon'></i>
-                <span class="neon-text">DRAGONOTE</span>
-            </div>
-
-            <div class="auth-header">
-                <h1>Create Account</h1>
-                <p>Join the Cyberpunk social revolution</p>
-            </div>
-
-            <div class="progress-container">
-                <div class="progress-bar" id="progress-bar"></div>
-            </div>
-
-            <form id="register-form">
-                <!-- Step 1: Basic Info -->
-                <div class="form-step active" id="step-1">
-                    <div class="form-group">
-                        <label class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username" placeholder="Enter your username">
-                        <i class='bx bx-user form-icon'></i>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Enter your email">
-                        <i class='bx bx-envelope form-icon'></i>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Create a password">
-                        <i class='bx bx-lock form-icon'></i>
-                        <div class="password-strength" id="password-strength"></div>
-                        <div class="strength-text" id="strength-text">Weak password</div>
-                    </div>
-
-                    <div class="step-nav">
-                        <button type="button" class="btn btn-outline" onclick="window.location.href='login.html'">Back to Login</button>
-                        <button type="button" class="btn btn-primary" onclick="nextStep(1)">Continue</button>
-                    </div>
-                </div>
-
-                <!-- Step 2: Profile Setup -->
-                <div class="form-step" id="step-2">
-                    <div class="form-group">
-                        <label class="form-label">Select Avatar</label>
-                        <div class="avatar-selection">
-                            <div class="avatar-option" data-avatar="1">
-                                <img src="https://picsum.photos/200/200?random=1" alt="Avatar 1">
-                            </div>
-                            <div class="avatar-option" data-avatar="2">
-                                <img src="https://picsum.photos/200/200?random=2" alt="Avatar 2">
-                            </div>
-                            <div class="avatar-option" data-avatar="3">
-                                <img src="https://picsum.photos/200/200?random=3" alt="Avatar 3">
-                            </div>
-                            <div class="avatar-option" data-avatar="4">
-                                <img src="https://picsum.photos/200/200?random=4" alt="Avatar 4">
-                            </div>
-                            <div class="avatar-option" data-avatar="5">
-                                <img src="https://picsum.photos/200/200?random=5" alt="Avatar 5">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">Display Name</label>
-                        <input type="text" class="form-control" id="display-name" placeholder="How should we call you?">
-                        <i class='bx bx-id-card form-icon'></i>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">Bio</label>
-                        <textarea class="form-control" id="bio" rows="3" placeholder="Tell us about yourself..."></textarea>
-                    </div>
-
-                    <div class="step-nav">
-                        <button type="button" class="btn btn-outline" onclick="prevStep(2)">Back</button>
-                        <button type="button" class="btn btn-primary" onclick="nextStep(2)">Continue</button>
-                    </div>
-                </div>
-
-                <!-- Step 3: Preferences -->
-                <div class="form-step" id="step-3">
-                    <div class="form-group">
-                        <label class="form-label">Select Interests (Choose at least 3)</label>
-                        <div class="interests-grid">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="interest-1">
-                                <label class="form-check-label" for="interest-1">Cyberpunk</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="interest-2">
-                                <label class="form-check-label" for="interest-2">Technology</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="interest-3">
-                                <label class="form-check-label" for="interest-3">Gaming</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="interest-4">
-                                <label class="form-check-label" for="interest-4">Art & Design</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="interest-5">
-                                <label class="form-check-label" for="interest-5">Science Fiction</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="interest-6">
-                                <label class="form-check-label" for="interest-6">Music</label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="terms">
-                        <label class="form-check-label" for="terms">
-                            I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
-                        </label>
-                    </div>
-
-                    <div class="step-nav">
-                        <button type="button" class="btn btn-outline" onclick="prevStep(3)">Back</button>
-                        <button type="button" class="btn btn-primary" id="submit-btn">Create Account</button>
-                    </div>
-                </div>
-
-                <!-- Success Message -->
-                <div class="success-message" id="success-message">
-                    <i class='bx bx-check-circle success-icon'></i>
-                    <h2>Registration Successful!</h2>
-                    <p>Your account has been created. Welcome to Dragonote!</p>
-                    <button type="button" class="btn btn-primary" onclick="window.location.href='social.html'" style="margin-top: 20px;">
-                        Enter the Matrix
-                    </button>
-                </div>
-            </form>
-
-            <div class="divider">
-                <span>or continue with</span>
-            </div>
-
-            <div class="social-login">
-                <button class="social-btn">
-                    <i class='bx bxl-google'></i>
-                    Google
-                </button>
-                <button class="social-btn">
-                    <i class='bx bxl-facebook'></i>
-                    Facebook
-                </button>
-                <button class="social-btn">
-                    <i class='bx bxl-apple'></i>
-                    Apple
-                </button>
-            </div>
-
-            <div class="form-footer">
-                Already have an account? <a href="login.html">Log in</a>
-            </div>
+      <div class="auth-card">
+        <div class="logo">
+          <i class="bx bxs-dragon"></i>
+          <span class="neon-text">DRAGONOTE</span>
         </div>
+
+        <div class="auth-header">
+          <h1>Create Account</h1>
+          <p>Join the Cyberpunk social revolution</p>
+        </div>
+
+        <div class="progress-container">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
+
+        <form id="register-form">
+          <!-- Step 1: Basic Info -->
+          <div class="form-step active" id="step-1">
+            <div class="form-group">
+              <label class="form-label">Username</label>
+              <input
+                type="text"
+                class="form-control"
+                id="username"
+                placeholder="Enter your username"
+              />
+              <i class="bx bx-user form-icon"></i>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                placeholder="Enter your email"
+              />
+              <i class="bx bx-envelope form-icon"></i>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                placeholder="Create a password"
+              />
+              <i class="bx bx-lock form-icon"></i>
+              <div class="password-strength" id="password-strength"></div>
+              <div class="strength-text" id="strength-text">Weak password</div>
+            </div>
+
+            <div class="step-nav">
+              <button
+                type="button"
+                class="btn btn-outline"
+                onclick="window.location.href='login.html'"
+              >
+                Back to Login
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                onclick="nextStep(1)"
+              >
+                Continue
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 2: Profile Setup -->
+          <div class="form-step" id="step-2">
+            <div class="form-group">
+              <label class="form-label">Select Avatar</label>
+              <div class="avatar-selection">
+                <div class="avatar-option" data-avatar="1">
+                  <img
+                    src="https://picsum.photos/200/200?random=1"
+                    alt="Avatar 1"
+                  />
+                </div>
+                <div class="avatar-option" data-avatar="2">
+                  <img
+                    src="https://picsum.photos/200/200?random=2"
+                    alt="Avatar 2"
+                  />
+                </div>
+                <div class="avatar-option" data-avatar="3">
+                  <img
+                    src="https://picsum.photos/200/200?random=3"
+                    alt="Avatar 3"
+                  />
+                </div>
+                <div class="avatar-option" data-avatar="4">
+                  <img
+                    src="https://picsum.photos/200/200?random=4"
+                    alt="Avatar 4"
+                  />
+                </div>
+                <div class="avatar-option" data-avatar="5">
+                  <img
+                    src="https://picsum.photos/200/200?random=5"
+                    alt="Avatar 5"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Display Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="display-name"
+                placeholder="How should we call you?"
+              />
+              <i class="bx bx-id-card form-icon"></i>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Bio</label>
+              <textarea
+                class="form-control"
+                id="bio"
+                rows="3"
+                placeholder="Tell us about yourself..."
+              ></textarea>
+            </div>
+
+            <div class="step-nav">
+              <button
+                type="button"
+                class="btn btn-outline"
+                onclick="prevStep(2)"
+              >
+                Back
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                onclick="nextStep(2)"
+              >
+                Continue
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 3: Preferences -->
+          <div class="form-step" id="step-3">
+            <div class="form-group">
+              <label class="form-label"
+                >Select Interests (Choose at least 3)</label
+              >
+              <div class="interests-grid">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="interest-1"
+                  />
+                  <label class="form-check-label" for="interest-1"
+                    >Cyberpunk</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="interest-2"
+                  />
+                  <label class="form-check-label" for="interest-2"
+                    >Technology</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="interest-3"
+                  />
+                  <label class="form-check-label" for="interest-3"
+                    >Gaming</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="interest-4"
+                  />
+                  <label class="form-check-label" for="interest-4"
+                    >Art & Design</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="interest-5"
+                  />
+                  <label class="form-check-label" for="interest-5"
+                    >Science Fiction</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="interest-6"
+                  />
+                  <label class="form-check-label" for="interest-6">Music</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="terms" />
+              <label class="form-check-label" for="terms">
+                I agree to the <a href="#">Terms of Service</a> and
+                <a href="#">Privacy Policy</a>
+              </label>
+            </div>
+
+            <div class="step-nav">
+              <button
+                type="button"
+                class="btn btn-outline"
+                onclick="prevStep(3)"
+              >
+                Back
+              </button>
+              <button type="button" class="btn btn-primary" id="submit-btn">
+                Create Account
+              </button>
+            </div>
+          </div>
+
+          <!-- Success Message -->
+          <div class="success-message" id="success-message">
+            <i class="bx bx-check-circle success-icon"></i>
+            <h2>Registration Successful!</h2>
+            <p>Your account has been created. Welcome to Dragonote!</p>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="window.location.href='social.html'"
+              style="margin-top: 20px"
+            >
+              Enter the Matrix
+            </button>
+          </div>
+        </form>
+
+        <div class="divider">
+          <span>or continue with</span>
+        </div>
+
+        <div class="social-login">
+          <button class="social-btn">
+            <i class="bx bxl-google"></i>
+            Google
+          </button>
+          <button class="social-btn">
+            <i class="bx bxl-facebook"></i>
+            Facebook
+          </button>
+          <button class="social-btn">
+            <i class="bx bxl-apple"></i>
+            Apple
+          </button>
+        </div>
+
+        <div class="form-footer">
+          Already have an account? <a href="login.html">Log in</a>
+        </div>
+      </div>
     </div>
 
     <script>
-        // Multi-step form handling
-        function nextStep(step) {
-            // Validate the current step
-            if (!validateStep(step)) return;
+      // Multi-step form handling
+      function nextStep(step) {
+        // Validate the current step
+        if (!validateStep(step)) return;
 
-            // Hide current step
-            document.getElementById(`step-${step}`).classList.remove('active');
-            
-            // Show next step
-            document.getElementById(`step-${step + 1}`).classList.add('active');
-            
-            // Update progress bar
-            const progressBar = document.getElementById('progress-bar');
-            progressBar.style.width = `${(step + 1) * 33.33}%`;
+        // Hide current step
+        document.getElementById(`step-${step}`).classList.remove("active");
+
+        // Show next step
+        document.getElementById(`step-${step + 1}`).classList.add("active");
+
+        // Update progress bar
+        const progressBar = document.getElementById("progress-bar");
+        progressBar.style.width = `${(step + 1) * 33.33}%`;
+      }
+
+      function prevStep(step) {
+        // Hide current step
+        document.getElementById(`step-${step}`).classList.remove("active");
+
+        // Show previous step
+        document.getElementById(`step-${step - 1}`).classList.add("active");
+
+        // Update progress bar
+        const progressBar = document.getElementById("progress-bar");
+        progressBar.style.width = `${(step - 1) * 33.33}%`;
+      }
+
+      function validateStep(step) {
+        let isValid = true;
+
+        if (step === 1) {
+          const username = document.getElementById("username").value;
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+
+          if (!username || !email || !password) {
+            alert("Please fill in all fields");
+            isValid = false;
+          } else if (!validateEmail(email)) {
+            alert("Please enter a valid email address");
+            isValid = false;
+          } else if (password.length < 8) {
+            alert("Password must be at least 8 characters long");
+            isValid = false;
+          }
+        } else if (step === 2) {
+          const displayName = document.getElementById("display-name").value;
+          const selectedAvatar = document.querySelector(
+            ".avatar-option.selected"
+          );
+
+          if (!displayName) {
+            alert("Please enter a display name");
+            isValid = false;
+          } else if (!selectedAvatar) {
+            alert("Please select an avatar");
+            isValid = false;
+          }
         }
 
-        function prevStep(step) {
-            // Hide current step
-            document.getElementById(`step-${step}`).classList.remove('active');
-            
-            // Show previous step
-            document.getElementById(`step-${step - 1}`).classList.add('active');
-            
-            // Update progress bar
-            const progressBar = document.getElementById('progress-bar');
-            progressBar.style.width = `${(step - 1) * 33.33}%`;
+        return isValid;
+      }
+
+      function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+      }
+
+      // Password strength checker
+      const passwordInput = document.getElementById("password");
+      const strengthBar = document.getElementById("password-strength");
+      const strengthText = document.getElementById("strength-text");
+
+      passwordInput.addEventListener("input", function () {
+        const password = this.value;
+        let strength = 0;
+
+        if (password.length >= 8) strength += 1;
+        if (password.match(/[A-Z]/)) strength += 1;
+        if (password.match(/[0-9]/)) strength += 1;
+        if (password.match(/[^A-Za-z0-9]/)) strength += 1;
+
+        switch (strength) {
+          case 0:
+          case 1:
+            strengthBar.style.width = "33%";
+            strengthBar.className = "password-strength";
+            strengthText.className = "strength-text";
+            strengthText.textContent = "Weak password";
+            break;
+          case 2:
+          case 3:
+            strengthBar.style.width = "66%";
+            strengthBar.className = "password-strength medium";
+            strengthText.className = "strength-text medium";
+            strengthText.textContent = "Medium password";
+            break;
+          case 4:
+            strengthBar.style.width = "100%";
+            strengthBar.className = "password-strength strong";
+            strengthText.className = "strength-text strong";
+            strengthText.textContent = "Strong password";
+            break;
         }
+      });
 
-        function validateStep(step) {
-            let isValid = true;
-            
-            if (step === 1) {
-                const username = document.getElementById('username').value;
-                const email = document.getElementById('email').value;
-                const password = document.getElementById('password').value;
-                
-                if (!username || !email || !password) {
-                    alert('Please fill in all fields');
-                    isValid = false;
-                } else if (!validateEmail(email)) {
-                    alert('Please enter a valid email address');
-                    isValid = false;
-                } else if (password.length < 8) {
-                    alert('Password must be at least 8 characters long');
-                    isValid = false;
-                }
-            } else if (step === 2) {
-                const displayName = document.getElementById('display-name').value;
-                const selectedAvatar = document.querySelector('.avatar-option.selected');
-                
-                if (!displayName) {
-                    alert('Please enter a display name');
-                    isValid = false;
-                } else if (!selectedAvatar) {
-                    alert('Please select an avatar');
-                    isValid = false;
-                }
-            }
-            
-            return isValid;
-        }
-
-        function validateEmail(email) {
-            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(email);
-        }
-
-        // Password strength checker
-        const passwordInput = document.getElementById('password');
-        const strengthBar = document.getElementById('password-strength');
-        const strengthText = document.getElementById('strength-text');
-
-        passwordInput.addEventListener('input', function() {
-            const password = this.value;
-            let strength = 0;
-            
-            if (password.length >= 8) strength += 1;
-            if (password.match(/[A-Z]/)) strength += 1;
-            if (password.match(/[0-9]/)) strength += 1;
-            if (password.match(/[^A-Za-z0-9]/)) strength += 1;
-            
-            switch(strength) {
-                case 0:
-                case 1:
-                    strengthBar.style.width = '33%';
-                    strengthBar.className = 'password-strength';
-                    strengthText.className = 'strength-text';
-                    strengthText.textContent = 'Weak password';
-                    break;
-                case 2:
-                case 3:
-                    strengthBar.style.width = '66%';
-                    strengthBar.className = 'password-strength medium';
-                    strengthText.className = 'strength-text medium';
-                    strengthText.textContent = 'Medium password';
-                    break;
-                case 4:
-                    strengthBar.style.width = '100%';
-                    strengthBar.className = 'password-strength strong';
-                    strengthText.className = 'strength-text strong';
-                    strengthText.textContent = 'Strong password';
-                    break;
-            }
+      // Avatar selection
+      const avatarOptions = document.querySelectorAll(".avatar-option");
+      avatarOptions.forEach((option) => {
+        option.addEventListener("click", function () {
+          avatarOptions.forEach((opt) => opt.classList.remove("selected"));
+          this.classList.add("selected");
         });
+      });
 
-        // Avatar selection
-        const avatarOptions = document.querySelectorAll('.avatar-option');
-        avatarOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                avatarOptions.forEach(opt => opt.classList.remove('selected'));
-                this.classList.add('selected');
-            });
-        });
+      // Form submission
+      const submitBtn = document.getElementById("submit-btn");
+      submitBtn.addEventListener("click", function (e) {
+        e.preventDefault();
 
-        // Form submission
-        const submitBtn = document.getElementById('submit-btn');
-        submitBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Validate the final step
-            const termsCheckbox = document.getElementById('terms');
-            const interestCheckboxes = document.querySelectorAll('.interests-grid .form-check-input:checked');
-            
-            if (!termsCheckbox.checked) {
-                alert('Please agree to the Terms of Service and Privacy Policy');
-                return;
-            }
-            
-            if (interestCheckboxes.length < 3) {
-                alert('Please select at least 3 interests');
-                return;
-            }
-            
-            // Hide the form and show success message
-            document.getElementById('step-3').classList.remove('active');
-            document.getElementById('success-message').style.display = 'block';
-            
-            // In a real application, you would submit the form data to the server here
-            const formData = {
-                username: document.getElementById('username').value,
-                email: document.getElementById('email').value,
-                password: document.getElementById('password').value,
-                displayName: document.getElementById('display-name').value,
-                bio: document.getElementById('bio').value,
-                avatar: document.querySelector('.avatar-option.selected').dataset.avatar,
-                interests: Array.from(interestCheckboxes).map(cb => cb.id.replace('interest-', ''))
-            };
-            
-            console.log('Form submitted with data:', formData);
-            
-            // Simulate API call
-            setTimeout(() => {
-                // Redirect to main app (in a real application)
-                // window.location.href = 'index.html';
-            }, 3000);
-        });
+        // Validate the final step
+        const termsCheckbox = document.getElementById("terms");
+        const interestCheckboxes = document.querySelectorAll(
+          ".interests-grid .form-check-input:checked"
+        );
+
+        if (!termsCheckbox.checked) {
+          alert("Please agree to the Terms of Service and Privacy Policy");
+          return;
+        }
+
+        if (interestCheckboxes.length < 3) {
+          alert("Please select at least 3 interests");
+          return;
+        }
+
+        // Hide the form and show success message
+        document.getElementById("step-3").classList.remove("active");
+        document.getElementById("success-message").style.display = "block";
+
+        // In a real application, you would submit the form data to the server here
+        const formData = {
+          username: document.getElementById("username").value,
+          email: document.getElementById("email").value,
+          password: document.getElementById("password").value,
+          displayName: document.getElementById("display-name").value,
+          bio: document.getElementById("bio").value,
+          avatar: document.querySelector(".avatar-option.selected").dataset
+            .avatar,
+          interests: Array.from(interestCheckboxes).map((cb) =>
+            cb.id.replace("interest-", "")
+          ),
+        };
+
+        console.log("Form submitted with data:", formData);
+
+        localStorage.setItem("user", JSON.stringify(formData));
+
+        // Simulate API call
+        setTimeout(() => {
+          // Redirect to main app (in a real application)
+          // window.location.href = 'index.html';
+        }, 3000);
+      });
     </script>
-</body>
+  </body>
 </html>
-

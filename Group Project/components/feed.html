@@ -267,27 +267,41 @@
     .querySelector(".create-post .post-button")
     .addEventListener("click", function () {
       const input = document.querySelector(".post-input");
-      if (input.value.trim()) {
-        createPost(input.value);
-        input.value = "";
+      let content = input.value.trim();
+      if (!content) {
+        return;
       }
+
+      let user = JSON.parse(localStorage.getItem("user"));
+
+      let post = {
+        username: user.username,
+        content: input.value,
+        reactions: {},
+      };
+      createPost(post);
+      input.value = "";
+
+      let posts = JSON.parse(localStorage.getItem("posts") || "[]");
+      posts.push(post);
+      localStorage.setItem("posts", JSON.stringify(posts));
     });
 
-  function createPost(content) {
-    const post = document.createElement("div");
-    post.className = "post";
-    post.innerHTML = `
+  function createPost(post) {
+    const postNode = document.createElement("div");
+    postNode.className = "post";
+    postNode.innerHTML = /* html */ `
                 <div class="post-header">
-                    <img src="https://picsum.photos/200/200?random=1" alt="User" class="post-avatar">
+                    <img src="https://picsum.photos/seed/${post.username}/200/200" alt="User" class="post-avatar">
                     <div class="post-user-info">
-                        <div class="post-username">You</div>
+                        <div class="post-username">${post.username}</div>
                         <div class="post-time">Just now</div>
                     </div>
                     <div class="post-more">
                         <i class='bx bx-dots-horizontal-rounded'></i>
                     </div>
                 </div>
-                <div class="post-content">${content}</div>
+                <div class="post-content">${post.content}</div>
                 <div class="post-stats">
                     <span>0 reactions</span>
                     <span>0 comments</span>
@@ -342,9 +356,44 @@
     const createPost = currentView.querySelector(".create-post");
 
     if (createPost) {
-      currentView.insertBefore(post, createPost.nextSibling);
+      currentView.insertBefore(postNode, createPost.nextSibling);
     } else {
-      currentView.insertBefore(post, currentView.firstChild.nextSibling);
+      currentView.insertBefore(postNode, currentView.firstChild.nextSibling);
     }
   }
+
+  function init() {
+    let posts = JSON.parse(localStorage.getItem("posts") || "[]");
+
+    if (posts.length == 0) {
+      posts.push({
+        username: "NightCity_Fixer",
+        time: "Yesterday",
+        content: `Downtown is lit tonight! The new holographic billboards are something else.
+    The city never sleeps, and neither do I. #NightCity #UrbanLights`,
+        reactions: {
+          total: 256,
+          like: 176,
+          fire: 65,
+          wow: 15,
+          support: 12,
+        },
+        comments: [],
+      });
+    }
+
+    // let posts = [
+    //   { username: "Alice", content: "post 1" },
+    //   { username: "Bob", content: "post 2" },
+    //   { username: "Charlie", content: "post 3" },
+    // ];
+    for (let post of posts) {
+      createPost(post);
+    }
+
+    // localStorage.clear()
+  }
+  setTimeout(() => {
+    init();
+  }, 0);
 </script>

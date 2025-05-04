@@ -2,7 +2,12 @@
   <head> </head>
   <body>
     <script>
-      location.href = "/pages/welcome.html";
+      let user = JSON.parse(localStorage.getItem("user"));
+      if (user) {
+        location.href = "/pages/social.html";
+      } else {
+        location.href = "/pages/welcome.html";
+      }
     </script>
   </body>
 </html>
